@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau Kanban - Activ</title>
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="conteneur">
+            <h1 class="logo">
+                <img src="assets/image-logo.png" alt="Logo Activ" class="logo-img">
+                Activ
+            </h1>
+        </div>
+    </header>
+
+    <main class="tableau-taches">
+        <div class="contenu-tableau">
+            <div class="colonne-tache" data-status="todo">
+                <h2>À faire</h2>
+                <div class="liste-taches" id="todo-list"></div>
+                <button class="bouton-ajouter" onclick="openTaskModal('todo')">+ Ajouter une tâche</button>
+            </div>
+            <div class="colonne-tache" data-status="in-progress">
+                <h2>En cours</h2>
+                <div class="liste-taches" id="in-progress-list"></div>
+                <button class="bouton-ajouter" onclick="openTaskModal('in-progress')">+ Ajouter une tâche</button>
+            </div>
+            <div class="colonne-tache" data-status="review">
+                <h2>En révision</h2>
+                <div class="liste-taches" id="review-list"></div>
+                <button class="bouton-ajouter" onclick="openTaskModal('review')">+ Ajouter une tâche</button>
+            </div>
+            <div class="colonne-tache" data-status="done">
+                <h2>Terminée</h2>
+                <div class="liste-taches" id="done-list"></div>
+                <button class="bouton-ajouter" onclick="openTaskModal('done')">+ Ajouter une tâche</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTaskModal()">&times;</span>
+            <h2>Ajouter une tâche</h2>
+            <input type="text" id="taskTitle" placeholder="Titre de la tâche" required>
+            <textarea id="taskDescription" placeholder="Description"></textarea>
+            <select id="taskPriority">
+                <option value="low">Faible</option>
+                <option value="medium">Moyenne</option>
+                <option value="high">Élevée</option>
+            </select>
+            <button onclick="addTask()">Ajouter</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
