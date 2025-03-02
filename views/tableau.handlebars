@@ -1,0 +1,66 @@
+<body>
+    <div class="container">
+        <!-- Barre latérale -->
+        <aside class="sidebar">
+            <h2>Projet 1</h2>
+            <button class="ajouter-tache">Ajouter une Tâche</button>
+            <button class="filtrer"><span class="fleche">▼</span> Filtrer</button>
+            <button class="ajouter-colonne">Ajouter une colonne</button>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main>
+            <h1>Tableau de Bord des Tâches</h1>
+
+            <!-- Barre des titres des colonnes -->
+            <section class="tableau-header">
+                <div class="titre-colonne" id="titre-a-faire">
+                    <span class="numero">1</span>
+                    <h2>À faire</h2>
+                    <span class="fleche">→</span>
+                </div>
+                <div class="titre-colonne" id="titre-en-cours">
+                    <span class="numero">2</span>
+                    <h2>En cours</h2>
+                    <span class="fleche">→</span>
+                </div>
+                <div class="titre-colonne" id="titre-en-revision">
+                    <span class="numero">3</span>
+                    <h2>En révision</h2>
+                    <span class="fleche">→</span>
+                </div>
+                <div class="titre-colonne" id="titre-terminee">
+                    <span class="numero">4</span>
+                    <h2>Terminée</h2>
+                    <span class="fleche">✔</span>
+                </div>
+            </section>
+
+            <!-- Section des colonnes des tâches -->
+            <section class="tableau">
+                <div class="colonne" id="a-faire">
+                    <button class="ajouter">+</button>
+                    <div class="taches" data-statut="À faire"></div>
+                </div>
+
+                <div class="colonne" id="en-cours">
+                    <button class="ajouter">+</button>
+                    <div class="taches" data-statut="En cours"></div>
+                </div>
+
+                <div class="colonne" id="en-revision">
+                    <button class="ajouter">+</button>
+                    <div class="taches" data-statut="En révision"></div>
+                </div>
+
+                <div class="colonne" id="terminee">
+                    <button class="ajouter">+</button>
+                    <div class="taches" data-statut="Terminée"></div>
+                </div>
+            </section>
+
+            {{> modalajout}}
+
+        </main>
+    </div>
+</body>

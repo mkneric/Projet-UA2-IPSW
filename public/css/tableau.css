@@ -1,0 +1,178 @@
+/* === Styles généraux === */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+}
+
+/* === Barre latérale === */
+.sidebar {
+    width: 200px;
+    background: #e0e0e0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar h2 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* === Boutons de la barre latérale === */
+.sidebar button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espacement entre l'icône et le texte */
+}
+
+/* === Bouton "Ajouter une tâche" et "Ajouter une colonne" === */
+.ajouter-tache,
+.ajouter-colonne {
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s ease;
+}
+
+.ajouter-tache:hover,
+.ajouter-colonne:hover {
+    background-color: #005b8e;
+}
+
+.ajouter-tache::before,
+.ajouter-colonne::before {
+    content: "+";
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* === Bouton "Filtrer" === */
+.filtrer {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.filtrer:hover {
+    background-color: #1A56BD;
+    color: white;
+}
+
+.filtrer .fleche {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 8px; /* Ajoute de l'espace après "Filtrer" */
+}
+
+/* === Tableau de bord === */
+main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+/* === Barre des titres des colonnes === */
+.tableau-header {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin: 15px auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.titre-colonne {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    width: 220px; /* Alignement avec les colonnes */
+    height: 35px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des numéros */
+.numero {
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Style des titres */
+.titre-colonne h2 {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+/* Style des flèches */
+.fleche {
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+/* Couleurs des titres */
+#titre-a-faire { background: blue; color: white; }
+#titre-en-cours { background: orange; color: white; }
+#titre-en-revision { background: purple; color: white; }
+#titre-terminee { background: green; color: white; }
+
+/* === Colonnes des tâches === */
+.tableau {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.colonne {
+    background: #dcdcdc;
+    padding: 15px;
+    border-radius: 10px;
+    width: 220px;
+    text-align: center;
+}
+
+/* === Bouton "+" dans les colonnes === */
+.ajouter {
+    font-size: 1.2em;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: black;
+}
+
+/* === Tâches === */
+.taches {
+    min-height: 200px;
+    border: 2px dashed #ccc;
+    padding: 10px;
+}
