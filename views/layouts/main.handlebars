@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titre}}</title>
+
+    {{#each styles}}
+    <link rel="stylesheet" href="{{this}}">
+    {{/each}}
+
+    {{#each scripts}}
+    <script src={{this}}></script>
+    {{/each}}
+</head>
+
+<body>
+    <header class="entete">
+        <div class="conteneur">
+            <h1 class="logo">
+                <img src="/assets/image-logo.png" alt="Logo Activ" class="logo-img">
+                Activ
+            </h1>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenu">
+        <div class="conteneur">
+            {{{body}}}
+        </div>
+    </main>
+
+    <footer class="pied-page">
+        &copy; 2025 Projet UA2 - Introduction à la Programmation des Serveurs Web | Collège de la Cité
+    </footer>
+</body>
+
+</html>

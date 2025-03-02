@@ -1,5 +1,93 @@
+/* === Style spécifique à l'index.handlebars === */
+main {
+    flex: 1;
+    padding: 15px 0;
+}
+
+.accueil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+.texte {
+    flex: 1;
+    text-align: left;
+    padding: 40px;
+}
+
+.image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.image img {
+    max-width: 400px;
+    height: auto;
+}
+
+/* === Titres et paragraphes === */
 h1 {
- color: blue;
- font-size: large;
- font-weight: 800;
+    color: #2c3e50;
+    font-size: 2.8em;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+p {
+    color: #7f8c8d;
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* === Bouton === */
+.bouton {
+    background-color: #1A56BD;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.bouton:hover {
+    background-color: #1A56BD;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 121, 191, 0.3);
+}
+
+/* === Adaptation mobile === */
+@media (max-width: 768px) {
+    .accueil {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .image {
+        order: -1;
+        justify-content: center;
+    }
+
+    .texte {
+        order: 0;
+        text-align: center;
+    }
+
+    .bouton {
+        order: 1;
+        margin-top: 20px;
+    }
 }
