@@ -25,8 +25,8 @@ router.get("/contact", (request, response) => {
 router.get("/tableau", async (request, response) => {
     response.render("tableau", {
         titre: "Tableau de Bord",
-        styles: ["/css/main.css", "/css/tableau.css"], 
-        scripts: ["/js/main.js"],
+        styles: ["/css/main.css", "/css/tableau.css", "/css/modalajout.css"],
+        scripts: ["/js/main.js", "/js/script.js"], 
         todos: await getTodos(), 
     });
 });

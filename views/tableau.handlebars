@@ -1,6 +1,5 @@
 <body>
     <div class="container">
-        <!-- Barre latérale -->
         <aside class="sidebar">
             <h2>Projet 1</h2>
             <button class="ajouter-tache">Ajouter une Tâche</button>
@@ -8,11 +7,9 @@
             <button class="ajouter-colonne">Ajouter une colonne</button>
         </aside>
 
-        <!-- Contenu principal -->
         <main>
             <h1>Tableau de Bord des Tâches</h1>
 
-            <!-- Barre des titres des colonnes -->
             <section class="tableau-header">
                 <div class="titre-colonne" id="titre-a-faire">
                     <span class="numero">1</span>
@@ -36,7 +33,6 @@
                 </div>
             </section>
 
-            <!-- Section des colonnes des tâches -->
             <section class="tableau">
                 <div class="colonne" id="a-faire">
                     <button class="ajouter">+</button>
@@ -63,4 +59,7 @@
 
         </main>
     </div>
+    {{#each scripts}}
+        <script src="{{this}}"></script>
+    {{/each}}
 </body>

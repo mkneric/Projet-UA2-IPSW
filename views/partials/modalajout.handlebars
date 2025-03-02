@@ -1,22 +1,23 @@
-<!-- Overlay pour assombrir l'arrière-plan -->
 <div class="modal-overlay" id="modal-overlay"></div>
 
-<!-- Modale -->
 <div id="modal-ajouter-tache" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Ajouter une Tâche</h2>
         <form id="form-ajouter-tache">
+            <!-- Titre -->
             <div class="form-group">
                 <label for="titre">Titre :</label>
                 <input type="text" id="titre" name="titre" required>
             </div>
 
+            <!-- Description -->
             <div class="form-group">
                 <label for="description">Description :</label>
                 <textarea id="description" name="description" required></textarea>
             </div>
 
+            <!-- Priorité et Date Limite -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="priorite">Priorité :</label>
@@ -33,7 +34,8 @@
                 </div>
             </div>
 
-            <div class="form-row">
+            <!-- Assigner une Tâche et Statut -->
+            <div class="form-row-last">
                 <div class="form-group">
                     <label for="assignation">Assigner une Tâche :</label>
                     <input type="text" id="assignation" name="assignation">
@@ -50,6 +52,7 @@
                 </div>
             </div>
 
+            <!-- Boutons Enregistrer et Annuler -->
             <div class="modal-buttons">
                 <button type="submit" class="btn enregistrer">Enregistrer</button>
                 <button type="button" class="btn annuler">Annuler</button>

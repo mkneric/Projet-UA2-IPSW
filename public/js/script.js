@@ -1,44 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("✅ Script chargé !");
+    console.log("Script chargé et exécuté !");
 
-    const modal = document.getElementById("modal-ajouter-tache");
-    const overlay = document.getElementById("modal-overlay");
+    // Sélection de la modale et de l'overlay
+    let modal = document.getElementById("modal-ajouter-tache");
+    let overlay = document.getElementById("modal-overlay");
+    let closeBtn = document.querySelector(".close");
+    let cancelButton = document.querySelector(".annuler");
 
-    if (!modal || !overlay) {
-        console.error("❌ La modale ou l'overlay n'existe pas !");
+    // Sélection des boutons pour ouvrir la modale
+    let btnAjouterTache = document.querySelector(".ajouter-tache");
+    let btnAjouterColonnes = document.querySelectorAll(".ajouter"); 
+
+    // Vérifier si la modale et l'overlay existent avant de manipuler les événements
+    if (!modal || !overlay || !closeBtn || !cancelButton) {
+        console.error("La modale ou l'overlay sont introuvables !");
         return;
     }
 
-    const openModalButtons = document.querySelectorAll(".ajouter-tache, .ajouter");
-    console.log("✅ Boutons détectés :", openModalButtons.length);
+    function openPopup() {
+        console.log("Ouverture de la popup !");
+        modal.style.display = "flex";
+        overlay.style.display = "block";
+        document.body.classList.add("modal-open");
+    }
 
-    // 🔥 FORCER LA FERMETURE IMMÉDIATE 🔥
-    modal.style.display = "none";
-    overlay.style.display = "none";
-
-    openModalButtons.forEach(button => {
-        button.addEventListener("click", (event) => {
-            event.preventDefault(); // Empêche une éventuelle redirection
-            console.log("✅ Bouton cliqué !");
-            modal.style.display = "flex";
-            overlay.style.display = "block"; // Afficher l'overlay
-            document.body.classList.add("modal-open"); // Empêche le scroll de fond
-        });
-    });
-
-    // Fermer la modale
-    const closeModal = document.querySelector(".modal .close");
-    const cancelButton = document.querySelector(".modal .annuler");
-
-    const closeModalFunction = () => {
-        console.log("❌ Fermeture de la modale");
+    function closePopup() {
+        console.log("Fermeture de la popup !");
         modal.style.display = "none";
-        overlay.style.display = "none"; // Masquer l'overlay
-        document.body.classList.remove("modal-open"); // Rétablir le scroll
-    };
+        overlay.style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
 
-    if (closeModal) closeModal.addEventListener("click", closeModalFunction);
-    if (cancelButton) cancelButton.addEventListener("click", closeModalFunction);
-    
-    overlay.addEventListener("click", closeModalFunction);
+    // Ajouter un événement sur "+ Ajouter une tâche"
+    if (btnAjouterTache) {
+        btnAjouterTache.addEventListener("click", () => {
+            console.log("Click détecté sur '+ Ajouter une tâche' !");
+            openPopup();
+        });
+    } else {
+        console.error("Le bouton '+ Ajouter une tâche' est introuvable !");
+    }
+
+    // Ajouter un événement sur les boutons "+" des colonnes
+    if (btnAjouterColonnes.length > 0) {
+        btnAjouterColonnes.forEach(button => {
+            button.addEventListener("click", () => {
+                console.log("Click détecté sur un bouton '+' !");
+                openPopup();
+            });
+        });
+    } else {
+        console.error("Aucun bouton '+' trouvé dans les colonnes !");
+    }
+
+    // Ajouter les événements pour fermer la modale
+    closeBtn.addEventListener("click", closePopup); // Fermer avec "X"
+    cancelButton.addEventListener("click", closePopup); // Fermer avec "Annuler"
 });
