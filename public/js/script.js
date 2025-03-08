@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Ajouter les événements pour fermer la modale
+    overlay.addEventListener("click", closePopup); // Fermer en cliquant à l'extérieur 
     closeBtn.addEventListener("click", closePopup); // Fermer avec "X"
     cancelButton.addEventListener("click", closePopup); // Fermer avec "Annuler"
 });
