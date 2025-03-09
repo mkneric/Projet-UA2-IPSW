@@ -3,11 +3,11 @@ import { addTodo, getTodos, updateTodo } from "./model/todo.js";
 
 const router = Router();
 
-//Definition des routes
+//Definition des routes de l'interface utilisateur (Frontend)
 router.get("/", async (request, response) => {
     response.render("index", {
         titre: "Accueil",
-        styles: ["/css/main.css", "/css/style.css"],  
+        styles: ["/css/main.css", "/css/style.css"],
         scripts: ["/js/main.js"],
         todos: await getTodos(),
     });
@@ -16,7 +16,7 @@ router.get("/", async (request, response) => {
 router.get("/contact", (request, response) => {
     response.render("contact", {
         titre: "Contact",
-        styles: ["/css/main.css", "/css/contact.css"], 
+        styles: ["/css/main.css", "/css/contact.css"],
         scripts: ["/js/main.js"],
     });
 });
@@ -26,11 +26,12 @@ router.get("/tableau", async (request, response) => {
     response.render("tableau", {
         titre: "Tableau de Bord",
         styles: ["/css/main.css", "/css/tableau.css", "/css/modalajout.css"],
-        scripts: ["/js/main.js", "/js/script.js"], 
-        todos: await getTodos(), 
+        scripts: ["/js/main.js", "/js/script.js"],
+        todos: await getTodos(),
     });
 });
 
+//Definition des routes de l'interface utilisateur (Frontend)
 //Route pour ajouter une tache
 router.post("/api/todo", async (request, response) => {
     const { description } = request.body;
