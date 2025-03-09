@@ -14,7 +14,7 @@ import {
 
 const router = Router();
 
-// === Routes de l'interface utilisateur (Frontend) ===
+// Routes de l'interface utilisateur (Frontend) 
 router.get("/", async (request, response) => {
     response.render("index", {
         titre: "Accueil",
@@ -41,7 +41,7 @@ router.get("/tableau", async (request, response) => {
     });
 });
 
-// === Routes API pour la gestion des tâches ===
+// Routes API pour la gestion des tâches
 
 // Ajouter une tâche
 router.post("/api/todo", async (request, response) => {
@@ -112,7 +112,7 @@ router.delete("/api/todo/:id", async (request, response) => {
     }
 });
 
-// === Routes de filtrage et tri des tâches ===
+// Routes de filtrage et tri des tâches 
 router.get("/api/todos", async (request, response) => {
     try {
         if (request.query.statut) {
