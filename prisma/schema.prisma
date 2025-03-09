@@ -10,14 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model todo{
-  id            Int      @id @default(autoincrement())
-  description   String
-  est_faite     Boolean   @default(false)
-  auteur        String?
+model Todo {
+  id           Int      @id @default(autoincrement())
+  description  String
+  priorite     String?  // Priorité (Faible, Moyenne, Élevée)
+  date_limite  DateTime? // Date limite de la tâche
+  statut       String   @default("À faire") // Statut de la tâche (À faire, En cours, Terminée, etc.)
+  est_faite    Boolean  @default(false) // Indique si la tâche est complétée
+  auteur       String?  // Auteur de la tâche (optionnel)
+  historique   Historique[] // Relation avec l'historique des modifications
 }
 
-model user{
-  id            Int      @id @default(autoincrement())
-  nom           String
+model User {
+  id    Int    @id @default(autoincrement())
+  nom   String
+}
+
+model Historique {
+  id        Int      @id @default(autoincrement())
+  todoId    Int      // Clé étrangère vers Todo
+  modification  String  // Détail des modifications
+  date_modif   DateTime @default(now()) // Date de la modification
+
+  todo      Todo    @relation(fields: [todoId], references: [id], onDelete: Cascade)
 }
