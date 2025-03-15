@@ -1,0 +1,63 @@
+<div class="modal-overlay" id="modal-overlay"></div>
+
+<div id="modal-ajouter-tache" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Détail de la Tâche</h2>
+        <form id="form-ajouter-tache">
+            <!-- Titre -->
+            <div class="form-group">
+                <label for="titre">Titre :</label>
+                <input type="text" id="titre" name="titre" required>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description :</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <!-- Priorité et Date Limite -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="priorite">Priorité :</label>
+                    <select id="priorite" name="priorite">
+                        <option value="faible">Faible</option>
+                        <option value="moyenne">Moyenne</option>
+                        <option value="elevee">Élevée</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date-limite">Date Limite :</label>
+                    <input type="date" id="date-limite" name="date-limite" required>
+                </div>
+            </div>
+
+            <!-- Assigner une Tâche et Statut -->
+            <div class="form-row-last">
+                <div class="form-group">
+                    <label for="assignation">Assigner une Tâche :</label>
+                    <input type="text" id="assignation" name="assignation">
+                </div>
+
+                <div class="form-group">
+                    <label for="statut">Statut :</label>
+                    <select id="statut" name="statut">
+                        <option value="À faire">À faire</option>
+                        <option value="En cours">En cours</option>
+                        <option value="En révision">En révision</option>
+                        <option value="Terminée">Terminée</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Boutons Modifier, Enregistrer et Supprimer -->
+            <div class="modal-buttons">
+                <button type="button" class="btn modifier">Modifier</button>
+                <button type="submit" class="btn enregistrer">Enregistrer</button>
+                <button type="button" class="btn supprimer">Supprimer</button>
+            </div>
+        </form>
+    </div>
+</div>
