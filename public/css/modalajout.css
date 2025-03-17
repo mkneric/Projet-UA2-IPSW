@@ -65,7 +65,7 @@ body.modal-open {
 
 .form-group label {
     font-weight: bold;
-    margin-right: 8px; /* Espace réduit entre le label et le champ de saisie */
+    margin-right: 5px; /* Espace réduit entre le label et le champ de saisie */
     font-size: 13px;
     white-space: nowrap; 
 }
@@ -136,4 +136,19 @@ body.modal-open {
 .annuler {
     background-color: #F44336;
     color: white;
+}
+
+.input-error {
+    border: 2px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    width: 100%; /* Prend toute la largeur pour éviter les décalages */
+    text-align: center; /* Aligné à gauche */
+    position: absolute; /* Position absolue pour éviter le déplacement des autres éléments */
+    bottom: -10px; /* Ajuste la position du message sous le champ */
 }

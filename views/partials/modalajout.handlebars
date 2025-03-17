@@ -4,46 +4,47 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Ajouter une Tâche</h2>
-        <form id="form-ajouter-tache">
-            <!-- Titre -->
+
+        <form id="form-ajouter-tache" novalidate>
             <div class="form-group">
                 <label for="titre">Titre :</label>
-                <input type="text" id="titre" name="titre" required>
+                <input type="text" id="titre" name="titre" required minlength="5" maxlength="50">
+                <span class="error-message" id="error-titre"></span>
             </div>
 
-            <!-- Description -->
             <div class="form-group">
                 <label for="description">Description :</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="description" required minlength="5" maxlength="200"></textarea>
+                <span class="error-message" id="error-description"></span>
             </div>
 
-            <!-- Priorité et Date Limite -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="priorite">Priorité :</label>
-                    <select id="priorite" name="priorite">
-                        <option value="faible">Faible</option>
-                        <option value="moyenne">Moyenne</option>
-                        <option value="elevee">Élevée</option>
+                    <select id="priorite" name="priorite" required>
+                        <option value="Faible">Faible</option>
+                        <option value="Moyenne">Moyenne</option>
+                        <option value="Élevée">Élevée</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="date-limite">Date Limite :</label>
                     <input type="date" id="date-limite" name="date-limite" required>
+                    <span class="error-message" id="error-date-limite"></span>
                 </div>
             </div>
 
-            <!-- Assigner une Tâche et Statut -->
             <div class="form-row-last">
                 <div class="form-group">
                     <label for="assignation">Assigner une Tâche :</label>
                     <input type="text" id="assignation" name="assignation">
+                    <span class="error-message" id="error-assignation"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="statut">Statut :</label>
-                    <select id="statut" name="statut">
+                    <select id="statut" name="statut" required>
                         <option value="À faire">À faire</option>
                         <option value="En cours">En cours</option>
                         <option value="En révision">En révision</option>
@@ -52,7 +53,6 @@
                 </div>
             </div>
 
-            <!-- Boutons Enregistrer et Annuler -->
             <div class="modal-buttons">
                 <button type="submit" class="btn enregistrer">Enregistrer</button>
                 <button type="button" class="btn annuler">Annuler</button>

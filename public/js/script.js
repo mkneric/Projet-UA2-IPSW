@@ -1,60 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Script chargé et exécuté !");
 
-    // Sélection de la modale et de l'overlay
-    let modal = document.getElementById("modal-ajouter-tache");
+    // Sélection des modales et overlay
+    let modalAjout = document.getElementById("modal-ajouter-tache");
+    let modalDetail = document.getElementById("modal-detail");
+    let modalHistorique = document.getElementById("modal-historique");
     let overlay = document.getElementById("modal-overlay");
-    let closeBtn = document.querySelector(".close");
-    let cancelButton = document.querySelector(".annuler");
 
-    // Sélection des boutons pour ouvrir la modale
-    let btnAjouterTache = document.querySelector(".ajouter-tache");
-    let btnAjouterColonnes = document.querySelectorAll(".ajouter"); 
-
-    // Vérifier si la modale et l'overlay existent avant de manipuler les événements
-    if (!modal || !overlay || !closeBtn || !cancelButton) {
-        console.error("La modale ou l'overlay sont introuvables !");
+    // Vérification des modales
+    if (!modalAjout || !modalDetail || !modalHistorique || !overlay) {
+        console.error("Une des modales ou l'overlay est introuvable !");
         return;
     }
 
-    function openPopup() {
-        console.log("Ouverture de la popup !");
+    function openPopup(modal) {
+        console.log(`Ouverture de la popup : ${modal.id}`);
         modal.style.display = "flex";
         overlay.style.display = "block";
         document.body.classList.add("modal-open");
     }
 
     function closePopup() {
-        console.log("Fermeture de la popup !");
-        modal.style.display = "none";
+        console.log("Fermeture de toutes les popups !");
+        modalAjout.style.display = "none";
+        modalDetail.style.display = "none";
+        modalHistorique.style.display = "none";
         overlay.style.display = "none";
         document.body.classList.remove("modal-open");
     }
 
-    // Ajouter un événement sur "+ Ajouter une tâche"
-    if (btnAjouterTache) {
-        btnAjouterTache.addEventListener("click", () => {
-            console.log("Click détecté sur '+ Ajouter une tâche' !");
-            openPopup();
-        });
-    } else {
-        console.error("Le bouton '+ Ajouter une tâche' est introuvable !");
-    }
-
-    // Ajouter un événement sur les boutons "+" des colonnes
-    if (btnAjouterColonnes.length > 0) {
-        btnAjouterColonnes.forEach(button => {
-            button.addEventListener("click", () => {
-                console.log("Click détecté sur un bouton '+' !");
-                openPopup();
-            });
-        });
-    } else {
-        console.error("Aucun bouton '+' trouvé dans les colonnes !");
-    }
-
-    // Ajouter les événements pour fermer la modale
-    overlay.addEventListener("click", closePopup); // Fermer en cliquant à l'extérieur 
-    closeBtn.addEventListener("click", closePopup); // Fermer avec "X"
-    cancelButton.addEventListener("click", closePopup); // Fermer avec "Annuler"
+    // Gestion des boutons
+    document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("ajouter-tache")) {
+            openPopup(modalAjout);
+        }
+        if (event.target.classList.contains("btn-detail")) {
+            openPopup(modalDetail);
+        }
+        if (event.target.classList.contains("btn-historique")) {
+            openPopup(modalHistorique);
+        }
+        if (event.target.classList.contains("close") || event.target === overlay) {
+            closePopup();
+        }
+    });
 });

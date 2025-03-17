@@ -10,27 +10,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Définition des ENUMS pour assurer la validation des valeurs possibles
+enum Priorite {
+  FAIBLE
+  MOYENNE
+  ELEVEE
+}
+
+enum Statut {
+  A_FAIRE
+  EN_COURS
+  EN_REVISION
+  TERMINEE
+}
+
 model Todo {
-  id           Int      @id @default(autoincrement())
-  description  String
-  priorite     String?  // Priorité (Faible, Moyenne, Élevée)
+  id           Int       @id @default(autoincrement())
+  description  String    @db.VarChar(200) // Ajout d'une limite de 200 caractères
+  priorite     Priorite? // Enum au lieu de String libre
   date_limite  DateTime? // Date limite de la tâche
-  statut       String   @default("À faire") // Statut de la tâche (À faire, En cours, Terminée, etc.)
-  est_faite    Boolean  @default(false) // Indique si la tâche est complétée
-  auteur       String?  // Auteur de la tâche (optionnel)
-  historique   Historique[] // Relation avec l'historique des modifications
+  statut       Statut    @default(A_FAIRE) // Enum au lieu de String libre
+  est_faite    Boolean   @default(false) // Indique si la tâche est complétée
+  auteur       String?   @db.VarChar(100) // Ajout d'une limite de 100 caractères
+  historique   Historique[]
 }
 
 model User {
   id    Int    @id @default(autoincrement())
-  nom   String
+  nom   String @db.VarChar(100) // Ajout d'une limite de 100 caractères
 }
 
 model Historique {
-  id        Int      @id @default(autoincrement())
-  todoId    Int      // Clé étrangère vers Todo
-  modification  String  // Détail des modifications
-  date_modif   DateTime @default(now()) // Date de la modification
+  id           Int       @id @default(autoincrement())
+  todoId       Int       // Clé étrangère vers Todo
+  modification String    @db.VarChar(500) // Ajout d'une limite de 500 caractères
+  date_modif   DateTime  @default(now()) // Date de la modification
 
-  todo      Todo    @relation(fields: [todoId], references: [id], onDelete: Cascade)
+  todo         Todo      @relation(fields: [todoId], references: [id], onDelete: Cascade)
 }

@@ -56,10 +56,12 @@
             </section>
 
             {{> modalajout}}
+            {{> modaldetail}}
+            {{> modalhistorique}}
 
         </main>
     </div>
     {{#each scripts}}
-        <script src="{{this}}"></script>
+    <script type="module" src="{{this}}"></script>
     {{/each}}
 </body>
