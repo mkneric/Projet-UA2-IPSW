@@ -26,25 +26,25 @@ enum Statut {
 
 model Todo {
   id           Int       @id @default(autoincrement())
-  description  String    @db.VarChar(200) // Ajout d'une limite de 200 caractères
-  priorite     Priorite? // Enum au lieu de String libre
-  date_limite  DateTime? // Date limite de la tâche
-  statut       Statut    @default(A_FAIRE) // Enum au lieu de String libre
-  est_faite    Boolean   @default(false) // Indique si la tâche est complétée
-  auteur       String?   @db.VarChar(100) // Ajout d'une limite de 100 caractères
+  description  String    
+  priorite     Priorite? 
+  date_limite  DateTime? 
+  statut       Statut    @default(A_FAIRE) 
+  est_faite    Boolean   @default(false) 
+  auteur       String?   
   historique   Historique[]
 }
 
 model User {
   id    Int    @id @default(autoincrement())
-  nom   String @db.VarChar(100) // Ajout d'une limite de 100 caractères
+  nom   String 
 }
 
 model Historique {
   id           Int       @id @default(autoincrement())
-  todoId       Int       // Clé étrangère vers Todo
-  modification String    @db.VarChar(500) // Ajout d'une limite de 500 caractères
-  date_modif   DateTime  @default(now()) // Date de la modification
+  todoId       Int      
+  modification String    
+  date_modif   DateTime  @default(now()) 
 
   todo         Todo      @relation(fields: [todoId], references: [id], onDelete: Cascade)
 }

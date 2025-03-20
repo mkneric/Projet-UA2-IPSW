@@ -61,7 +61,7 @@ export const addTodoToClient = (tache) => {
 // Fonction pour récupérer et afficher les tâches enregistrées en base de données
 export const loadTodosFromServer = async () => {
     try {
-        const response = await fetch("/api/todos"); // ✅ Corrigé : /api/todos au lieu de /api/todo
+        const response = await fetch("/api/todos"); // Corrigé : /api/todos au lieu de /api/todo
         if (!response.ok) {
             throw new Error(`Erreur de récupération : ${response.status}`);
         }
