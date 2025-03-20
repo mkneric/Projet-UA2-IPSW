@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Mise à jour de l'affichage
             loadTaskDetails(taskId);
 
-            closePopup(); // ✅ Fermeture de la modale après modification
+            closePopup(); // Fermeture de la modale après modification
         } catch (error) {
             console.error("Erreur lors de la mise à jour de la tâche :", error);
         }

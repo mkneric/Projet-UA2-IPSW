@@ -1,10 +1,7 @@
-<!-- Modale principale (Détails et Modification) -->
 <div id="modal-detail" class="modal">
     <div class="modal-content">
-        <!-- Bouton de fermeture (×) -->
         <span class="close close-detail">&times;</span>
 
-        <!-- Section Détails de la Tâche -->
         <div id="details-tache">
             <h2>Détails de la Tâche</h2>
 
@@ -15,22 +12,18 @@
                 <p><strong>Date limite :</strong> <span id="date-limite-detail"></span></p>
             </div>
 
-            <!-- Boutons pour Détails -->
             <div class="modal-buttons">
                 <button type="button" class="btn modifier">Modifier</button>
                 <button type="button" class="btn supprimer">Supprimer</button>
             </div>
         </div>
 
-        <!-- Section Modification de la Tâche -->
         <div id="modification-tache" style="display: none;">
-            <!-- Flèche de retour (visible uniquement dans la modale de modification) -->
             <span class="back-arrow">&larr;</span>
 
             <h2>Modifier la Tâche</h2>
 
             <form id="form-detail-tache" novalidate>
-                <!-- ID caché pour modification -->
                 <input type="hidden" id="task-id">
 
                 <div class="form-group">
@@ -80,7 +73,6 @@
                     </div>
                 </div>
 
-                <!-- Boutons pour Modification -->
                 <div class="modal-buttons">
                     <button type="submit" class="btn enregistrer">Enregistrer</button>
                     <button type="button" class="btn annuler">Annuler</button>

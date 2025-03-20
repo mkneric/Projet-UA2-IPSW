@@ -24,7 +24,7 @@ export const addTodo = async (description, priorite, date_limite, statut = "À f
         });
         return todo;
     } catch (error) {
-        console.error("❌ Erreur lors de l'ajout d'une tâche:", error);
+        console.error("Erreur lors de l'ajout d'une tâche:", error);
         throw new Error(error.message || "Impossible d'ajouter la tâche.");
     }
 };
@@ -71,7 +71,7 @@ export const updateTodo = async (id, data) => {
 
         return todo;
     } catch (error) {
-        console.error("❌ Erreur lors de la mise à jour de la tâche:", error);
+        console.error("Erreur lors de la mise à jour de la tâche:", error);
         throw new Error(error.message || "Impossible de mettre à jour la tâche.");
     }
 };
@@ -102,7 +102,7 @@ export const updateTodoStatus = async (id, statut) => {
 
         return todo;
     } catch (error) {
-        console.error("❌ Erreur lors de la mise à jour du statut:", error);
+        console.error("Erreur lors de la mise à jour du statut:", error);
         throw new Error(error.message || "Impossible de mettre à jour le statut.");
     }
 };
@@ -122,7 +122,7 @@ export const deleteTodo = async (id) => {
         // Supprimer la tâche
         return await prisma.todo.delete({ where: { id: parseInt(id) } });
     } catch (error) {
-        console.error("❌ Erreur lors de la suppression de la tâche:", error);
+        console.error("Erreur lors de la suppression de la tâche:", error);
         throw new Error(error.message || "Impossible de supprimer la tâche.");
     }
 };
