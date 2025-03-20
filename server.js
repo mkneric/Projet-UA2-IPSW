@@ -12,7 +12,7 @@ import compression from "compression";
 import cors from "cors";
 import cspOption from "./csp-options.js";
 
-// Crréation du serveur express
+// Création du serveur express
 const app = express();
 app.engine("handlebars", engine()); //Pour informer express que l'on utilise handlebars
 app.set("view engine", "handlebars"); //Pour dire a express que le moteur de rendu est handlebars
