@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 // Fonction de validation des entrées
 const validateTodoData = (description) => {
-    if (!description || typeof description !== "string" || description.trim().length < 5) {
-        throw new Error("La description est invalide. Elle doit contenir au moins 5 caractères.");
+    if (!description || typeof description !== "string" || description.trim().length < 5 || description.trim().length > 50) {
+        throw new Error("La description est obligatoire et doit contenir entre 5 et 50 caractères.");
     }
 };
 
