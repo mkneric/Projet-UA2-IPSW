@@ -24,7 +24,7 @@ export const addTodo = async (description, priorite, date_limite, statut = "À f
         });
         return todo;
     } catch (error) {
-        console.error("Erreur lors de l'ajout d'une tâche:", error);
+        console.error("❌ Erreur lors de l'ajout d'une tâche:", error);
         throw new Error(error.message || "Impossible d'ajouter la tâche.");
     }
 };
@@ -44,25 +44,34 @@ export const getTodoById = async (id) => {
 export const updateTodo = async (id, data) => {
     try {
         if (!id || isNaN(parseInt(id))) throw new Error("ID invalide.");
-        if (data.description || data.priorite || data.date_limite) {
-            validateTodoData(data.description, data.priorite, data.date_limite);
-        }
+
+        // Filtrer les champs valides
+        const updateData = {};
+        if (data.title) updateData.title = data.title;
+        if (data.description) updateData.description = data.description;
+        if (data.priorite) updateData.priorite = data.priorite;
+        if (data.date_limite) updateData.date_limite = new Date(data.date_limite);
+        if (data.statut) updateData.statut = data.statut;
+
+        // Vérifier si la tâche existe avant mise à jour
+        const existingTodo = await prisma.todo.findUnique({ where: { id: parseInt(id) } });
+        if (!existingTodo) throw new Error("Tâche non trouvée.");
 
         const todo = await prisma.todo.update({
             where: { id: parseInt(id) },
-            data,
+            data: updateData,
         });
 
         await prisma.historique.create({
             data: {
                 todoId: id,
-                modification: `Mise à jour: ${JSON.stringify(data)}`,
+                modification: `Mise à jour: ${JSON.stringify(updateData)}`,
             },
         });
 
         return todo;
     } catch (error) {
-        console.error("Erreur lors de la mise à jour de la tâche:", error);
+        console.error("❌ Erreur lors de la mise à jour de la tâche:", error);
         throw new Error(error.message || "Impossible de mettre à jour la tâche.");
     }
 };
@@ -71,8 +80,13 @@ export const updateTodo = async (id, data) => {
 export const updateTodoStatus = async (id, statut) => {
     try {
         if (!id || isNaN(parseInt(id))) throw new Error("ID invalide.");
+        
         const validStatuses = ["À faire", "En cours", "En révision", "Terminée"];
         if (!validStatuses.includes(statut)) throw new Error("Statut invalide.");
+
+        // Vérifier si la tâche existe
+        const existingTodo = await prisma.todo.findUnique({ where: { id: parseInt(id) } });
+        if (!existingTodo) throw new Error("Tâche non trouvée.");
 
         const todo = await prisma.todo.update({
             where: { id: parseInt(id) },
@@ -88,7 +102,7 @@ export const updateTodoStatus = async (id, statut) => {
 
         return todo;
     } catch (error) {
-        console.error("Erreur lors de la mise à jour du statut:", error);
+        console.error("❌ Erreur lors de la mise à jour du statut:", error);
         throw new Error(error.message || "Impossible de mettre à jour le statut.");
     }
 };
@@ -97,10 +111,18 @@ export const updateTodoStatus = async (id, statut) => {
 export const deleteTodo = async (id) => {
     try {
         if (!id || isNaN(parseInt(id))) throw new Error("ID invalide.");
+        
+        // Vérifier si la tâche existe
+        const existingTodo = await prisma.todo.findUnique({ where: { id: parseInt(id) } });
+        if (!existingTodo) throw new Error("Tâche non trouvée.");
+
+        // Supprimer l'historique lié à la tâche
         await prisma.historique.deleteMany({ where: { todoId: parseInt(id) } });
+
+        // Supprimer la tâche
         return await prisma.todo.delete({ where: { id: parseInt(id) } });
     } catch (error) {
-        console.error("Erreur lors de la suppression de la tâche:", error);
+        console.error("❌ Erreur lors de la suppression de la tâche:", error);
         throw new Error(error.message || "Impossible de supprimer la tâche.");
     }
 };

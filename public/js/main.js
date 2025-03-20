@@ -9,67 +9,8 @@ const dateLimiteInput = document.getElementById("date-limite");
 const assignationInput = document.getElementById("assignation");
 const statutInput = document.getElementById("statut");
 
-// Vérifier si le formulaire existe sur la page
-if (!todoForm) {
-    console.warn("Aucun formulaire trouvé sur cette page. Script arrêté.");
-} else {
-    // Fonction pour envoyer une requête POST au serveur pour ajouter une tâche
-    const addTodoToServer = async (event) => {
-        event.preventDefault();
-
-        // Validation des champs avant soumission
-        if (!validateTask()) {
-            console.error("Validation échouée. Vérifiez les champs !");
-            return;
-        }
-
-        // Création de l'objet à envoyer
-        const data = {
-            title: titreInput.value,
-            description: descriptionInput.value,
-            priorite: prioriteInput.value,
-            date_limite: dateLimiteInput.value,
-            assignation: assignationInput.value,
-            statut: statutInput.value,
-        };
-
-        console.log("Données envoyées :", data); // Debugging
-
-        try {
-            // Envoi de la requête POST au serveur
-            const response = await fetch("/api/todo", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log("Réponse du serveur :", responseData);
-
-                // Ajouter la tâche à l'interface utilisateur
-                addTodoToClient(responseData.todo);
-
-                // Réinitialiser le formulaire
-                todoForm.reset();
-            } else {
-                console.error("Erreur serveur :", response.status);
-                const errorResponse = await response.json();
-                console.error("Détails de l'erreur :", errorResponse);
-            }
-        } catch (error) {
-            console.error("Erreur lors de l'ajout de la tâche :", error);
-        }
-    };
-
-    // Ajouter un event listener sur le formulaire
-    todoForm.addEventListener("submit", addTodoToServer);
-}
-
 // Fonction pour ajouter une tâche à l'interface utilisateur
-const addTodoToClient = (tache) => {
+export const addTodoToClient = (tache) => {
     const colonneCible = document.querySelector(`.taches[data-statut="${tache.statut}"]`);
 
     if (!colonneCible) {
@@ -116,3 +57,80 @@ const addTodoToClient = (tache) => {
     colonneCible.appendChild(todoElement);
     console.log(`Tâche ${tache.id} ajoutée dans la colonne ${tache.statut}`);
 };
+
+// Fonction pour récupérer et afficher les tâches enregistrées en base de données
+export const loadTodosFromServer = async () => {
+    try {
+        const response = await fetch("/api/todos"); // ✅ Corrigé : /api/todos au lieu de /api/todo
+        if (!response.ok) {
+            throw new Error(`Erreur de récupération : ${response.status}`);
+        }
+
+        const todos = await response.json(); // Convertir la réponse en JSON
+        console.log("Tâches chargées depuis la base :", todos);
+
+        // Ajouter chaque tâche à l'UI
+        todos.forEach(addTodoToClient);
+    } catch (error) {
+        console.error("Erreur lors du chargement des tâches :", error);
+    }
+};
+
+// Charger les tâches dès que la page est prête
+document.addEventListener("DOMContentLoaded", loadTodosFromServer);
+
+// Fonction pour ajouter une tâche au serveur
+export const addTodoToServer = async (event) => {
+    event.preventDefault();
+
+    if (!validateTask()) {
+        console.error("Validation échouée !");
+        return false;
+    }
+
+    const data = {
+        title: titreInput.value,
+        description: descriptionInput.value,
+        priorite: prioriteInput.value,
+        date_limite: dateLimiteInput.value,
+        assignation: assignationInput.value,
+        statut: statutInput.value,
+    };
+
+    console.log("Données envoyées :", data);
+
+    try {
+        const response = await fetch("/api/todo", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            console.error("Erreur serveur :", response.status);
+            return false;
+        }
+
+        const responseData = await response.json();
+        console.log("Réponse serveur :", responseData);
+
+        if (!responseData.todo) {
+            console.error("Réponse invalide du serveur !");
+            return false;
+        }
+
+        addTodoToClient(responseData.todo);
+
+        return true;
+    } catch (error) {
+        console.error("Erreur lors de l'ajout :", error);
+        return false;
+    }
+};
+
+// Vérifier si le formulaire existe avant d'ajouter l'événement
+if (todoForm) {
+    todoForm.addEventListener("submit", addTodoToServer);
+} else {
+    console.warn("Aucun formulaire trouvé sur cette page. Script arrêté.");
+}
