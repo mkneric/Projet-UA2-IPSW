@@ -25,6 +25,21 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Spécifique à la modale de détails */
+#modal-detail {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 /* Empêcher le scroll de fond quand la modale est ouverte */
 body.modal-open {
     overflow: hidden;
@@ -40,7 +55,8 @@ body.modal-open {
 }
 
 /* Bouton de fermeture */
-.modal .close {
+.modal .close, 
+#modal-detail .close {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -115,30 +131,48 @@ body.modal-open {
 .modal-buttons {
     display: flex;
     justify-content: center; 
-    gap: 50px; 
+    gap: 15px; 
 }
 
+/* Ajustement des boutons */
 .btn {
     padding: 6px 12px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 13px; 
-    width: 100px; 
+    width: 110px; 
     text-align: center; 
 }
 
-.modifier {
+/* Modifier */
+#modal-detail .modifier {
     background-color: #4997FD;
     color: white;
 }
 
-.enregistrer {
+/* Enregistrer */
+#modal-detail .enregistrer {
     background-color: #4CAF50;
     color: white;
 }
 
-.supprimer {
+/* Supprimer */
+#modal-detail .supprimer {
     background-color: #F44336;
     color: white;
 }
+
+/* Gestion des erreurs */
+.input-error {
+    border: 2px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+

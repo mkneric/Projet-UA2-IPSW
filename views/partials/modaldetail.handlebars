@@ -1,63 +1,91 @@
-<div class="modal-overlay" id="modal-overlay"></div>
-
-<div id="modal-ajouter-tache" class="modal">
+<!-- Modale principale (Détails et Modification) -->
+<div id="modal-detail" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Détail de la Tâche</h2>
-        <form id="form-ajouter-tache">
-            <!-- Titre -->
-            <div class="form-group">
-                <label for="titre">Titre :</label>
-                <input type="text" id="titre" name="titre" required>
+        <!-- Bouton de fermeture (×) -->
+        <span class="close close-detail">&times;</span>
+
+        <!-- Section Détails de la Tâche -->
+        <div id="details-tache">
+            <h2>Détails de la Tâche</h2>
+
+            <div>
+                <h3><strong>Titre :</strong> <span id="titre-detail"></span></h3>
+                <p><strong>Description :</strong> <span id="description-detail"></span></p>
+                <p><strong>Priorité :</strong> <span id="priorite-detail"></span></p>
+                <p><strong>Date limite :</strong> <span id="date-limite-detail"></span></p>
             </div>
 
-            <!-- Description -->
-            <div class="form-group">
-                <label for="description">Description :</label>
-                <textarea id="description" name="description" required></textarea>
-            </div>
-
-            <!-- Priorité et Date Limite -->
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="priorite">Priorité :</label>
-                    <select id="priorite" name="priorite">
-                        <option value="faible">Faible</option>
-                        <option value="moyenne">Moyenne</option>
-                        <option value="elevee">Élevée</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="date-limite">Date Limite :</label>
-                    <input type="date" id="date-limite" name="date-limite" required>
-                </div>
-            </div>
-
-            <!-- Assigner une Tâche et Statut -->
-            <div class="form-row-last">
-                <div class="form-group">
-                    <label for="assignation">Assigner une Tâche :</label>
-                    <input type="text" id="assignation" name="assignation">
-                </div>
-
-                <div class="form-group">
-                    <label for="statut">Statut :</label>
-                    <select id="statut" name="statut">
-                        <option value="À faire">À faire</option>
-                        <option value="En cours">En cours</option>
-                        <option value="En révision">En révision</option>
-                        <option value="Terminée">Terminée</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Boutons Modifier, Enregistrer et Supprimer -->
+            <!-- Boutons pour Détails -->
             <div class="modal-buttons">
                 <button type="button" class="btn modifier">Modifier</button>
-                <button type="submit" class="btn enregistrer">Enregistrer</button>
                 <button type="button" class="btn supprimer">Supprimer</button>
             </div>
-        </form>
+        </div>
+
+        <!-- Section Modification de la Tâche -->
+        <div id="modification-tache" style="display: none;">
+            <!-- Flèche de retour (visible uniquement dans la modale de modification) -->
+            <span class="back-arrow">&larr;</span>
+
+            <h2>Modifier la Tâche</h2>
+
+            <form id="form-detail-tache" novalidate>
+                <!-- ID caché pour modification -->
+                <input type="hidden" id="task-id">
+
+                <div class="form-group">
+                    <label for="titre-modification">Titre :</label>
+                    <input type="text" id="titre-modification" name="titre" required minlength="5" maxlength="50">
+                    <span class="error-message" id="error-titre-modification"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="description-modification">Description :</label>
+                    <textarea id="description-modification" name="description" required minlength="5" maxlength="200"></textarea>
+                    <span class="error-message" id="error-description-modification"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="priorite-modification">Priorité :</label>
+                        <select id="priorite-modification" name="priorite" required>
+                            <option value="Faible">Faible</option>
+                            <option value="Moyenne">Moyenne</option>
+                            <option value="Élevée">Élevée</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date-limite-modification">Date Limite :</label>
+                        <input type="date" id="date-limite-modification" name="date-limite" required>
+                        <span class="error-message" id="error-date-limite-modification"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-last">
+                    <div class="form-group">
+                        <label for="assignation-modification">Assigner une Tâche :</label>
+                        <input type="text" id="assignation-modification" name="assignation">
+                        <span class="error-message" id="error-assignation-modification"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="statut-modification">Statut :</label>
+                        <select id="statut-modification" name="statut" required>
+                            <option value="À faire">À faire</option>
+                            <option value="En cours">En cours</option>
+                            <option value="En révision">En révision</option>
+                            <option value="Terminée">Terminée</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Boutons pour Modification -->
+                <div class="modal-buttons">
+                    <button type="submit" class="btn enregistrer">Enregistrer</button>
+                    <button type="button" class="btn annuler">Annuler</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
