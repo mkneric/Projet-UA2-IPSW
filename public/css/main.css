@@ -84,3 +84,46 @@ body {
     color: #7f8c8d;
     border-top: 1px solid #e0e0e0;
 }
+
+/* === Responsive pour tablette et mobile === */
+@media screen and (max-width: 768px) {
+    .entete {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 20px;
+    }
+
+    .conteneur {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .logo {
+        font-size: 1.6em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo-img {
+        height: 40px;
+    }
+
+    .navigation ul {
+        gap: 10px;
+    }
+
+    .navigation ul li a {
+        font-size: 1em;
+    }
+
+    .pied-page {
+        font-size: 0.8em;
+        padding: 8px 10px;
+    }
+}

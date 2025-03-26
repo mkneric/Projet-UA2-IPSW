@@ -69,25 +69,64 @@ p {
     box-shadow: 0 5px 15px rgba(0, 121, 191, 0.3);
 }
 
-/* === Adaptation mobile === */
+/* === Adaptation tablette === */
 @media (max-width: 768px) {
     .accueil {
         flex-direction: column;
         text-align: center;
+        padding: 30px 15px;
     }
 
     .image {
         order: -1;
         justify-content: center;
+        margin-bottom: 30px;
     }
 
     .texte {
         order: 0;
         text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    p {
+        font-size: 1.1em;
     }
 
     .bouton {
-        order: 1;
         margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 1em;
     }
 }
+
+/* === Adaptation mobile petit écran (téléphones) === */
+@media (max-width: 480px) {
+    .image img {
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    p {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .bouton {
+        width: 80%;
+        font-size: 0.95em;
+        padding: 10px 20px;
+    }
+
+    .texte {
+        padding: 10px;
+    }
+}
+
