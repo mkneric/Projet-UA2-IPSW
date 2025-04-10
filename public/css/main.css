@@ -45,6 +45,21 @@ body {
     width: auto;
 }
 
+/* === Rendre tout le logo (image + texte) cliquable sans modifier son style === */
+.lien-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none; /* Supprime le soulignement */
+    color: inherit;        /* Garde la même couleur que .logo */
+}
+
+.texte-logo {
+    font-size: inherit;
+    font-weight: inherit;
+    text-shadow: inherit;
+}
+
 /* === Menu de navigation === */
 .navigation {
     display: flex;

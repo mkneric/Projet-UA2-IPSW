@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     addTaskButtons.forEach(button => button.addEventListener("click", openPopup));
     closeButtons.forEach(button => button.addEventListener("click", closePopup));
     cancelButton?.addEventListener("click", closePopup);
-    overlay.addEventListener("click", closePopup);
+  
 
     saveButton?.addEventListener("click", async (event) => {
         console.log("Bouton 'Enregistrer' cliqué");

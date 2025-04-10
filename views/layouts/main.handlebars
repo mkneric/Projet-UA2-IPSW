@@ -19,16 +19,31 @@
     <header class="entete">
         <div class="conteneur">
             <h1 class="logo">
-                <a href="/">
+                <a href="/" class="lien-logo">
                     <img src="/assets/image-logo.png" alt="Logo Activ" class="logo-img">
+                    <span class="texte-logo">Activ</span>
                 </a>
-                Activ
             </h1>
+
 
             <nav class="navigation">
                 <ul>
                     <li><a href="/">Accueil</a></li>
                     <li><a href="/contact">Contact</a></li>
+
+                    {{#if user}}
+                    <li><a href="/documents">Documents</a></li>
+                    <li class="deconnexion">
+                        <form method="POST" action="/deconnexion">
+                            <button type="submit">Déconnexion</button>
+                        </form>
+                    </li>
+                    <li class="bienvenue">Bonjour, {{user.nom}}</li>
+                    {{/if}}
+
+                    {{#unless user}}
+                    <li><a href="/connexion">Connexion</a></li>
+                    {{/unless}}
                 </ul>
             </nav>
         </div>
