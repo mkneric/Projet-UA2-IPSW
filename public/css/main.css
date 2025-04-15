@@ -99,3 +99,16 @@ body {
     color: #7f8c8d;
     border-top: 1px solid #e0e0e0;
 }
+
+.btn-deconnexion {
+    all: unset;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #1A56BD;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-deconnexion:hover {
+    text-decoration: underline;
+}
