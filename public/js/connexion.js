@@ -20,7 +20,7 @@ formConnexion.addEventListener("submit", async (event) => {
     });
 
     if (response.ok) {
-        window.location.replace("/");
+        window.location.replace("/tableau"); // Redirige vers le tableau de bord
     } else {
         let data = await response.json();
 

@@ -1,17 +1,42 @@
-<section>
-    <h2>Connexion</h2>
+<section class="page-connexion activ-style">
+    <div class="zone-gauche">
+        <img src="/assets/Login.png" alt="Activ Visuel" class="image-produit" />
+    </div>
 
-    <form id="form-connexion" class="form-authentification">
-        <label for="input-courriel">Courriel<input
-                type="email"
-                id="input-courriel"
-            /></label>
+    <div class="zone-droite">
+        <div class="logo-container">
+            <img src="/assets/image-logo.png" alt="Logo Activ" class="logo-activ" />
+        </div>
 
-        <label for="input-mot-de-passe">Mot de passe<input
-                type="password"
-                id="input-mot-de-passe"
-            /></label>
+        <form id="form-connexion" class="form-authentification">
+            <div class="form-group">
+                <label for="input-nom"><i class="fa fa-user"></i> Nom complet</label>
+                <input type="text" id="input-nom" placeholder="Nom" required />
+            </div>
 
-        <input type="submit" value="Connexion" />
-    </form>
+            <div class="form-group">
+                <label for="input-courriel"><i class="fa fa-envelope"></i> Adresse courriel</label>
+                <input type="email" id="input-courriel" placeholder="email@exemple.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="input-mot-de-passe"><i class="fa fa-lock"></i> Mot de passe</label>
+                <input type="password" id="input-mot-de-passe" placeholder="••••••••" required />
+            </div>
+
+            <div class="lien-oublie">
+                <a href="#">Mot de passe oublié ?</a>
+            </div>
+
+            <input type="submit" value="Connexion" class="btn-login" />
+
+            <div class="autres-options">
+                <p>Ou se connecter avec</p>
+                <div class="reseaux">
+                    <img src="/assets/google.png" alt="Google" />
+                    <img src="/assets/facebook.png" alt="Facebook" />
+                </div>
+            </div>
+        </form>
+    </div>
 </section>

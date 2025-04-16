@@ -32,10 +32,9 @@
                     <li><a href="/contact">Contact</a></li>
 
                     {{#if user}}
-                    <li><a href="/documents">Documents</a></li>
                     <li class="deconnexion">
                         <form method="POST" action="/deconnexion">
-                            <button type="submit">Déconnexion</button>
+                            <button type="submit" class="btn-deconnexion">Déconnexion</button>
                         </form>
                     </li>
                     <li class="bienvenue">Bonjour, {{user.nom}}</li>
